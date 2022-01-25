@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Utils">
+	
+ 
+	
+	
+         
+        
+        
+        
+	<select resultType="test.toy.coin.common.VO.COIN_board_VO"  id="selectBoard">
+                        <![CDATA[
+             select * from coin_board
+        ]]>
+        </select>
+     
+    <insert id="insertMEMBER" parameterType="test.toy.coin.common.VO.memberVo"> 
+     <![CDATA[
+    
+    INSERT INTO coin_member VALUES(#{NAME}, #{EMAIL},#{MONEY},#{ID},#{PASSWORD}) 
+     ]]>
+    </insert>
+    
+    
+    
+    
+    <select parameterType="String"     resultType="String"  id="login">
+                        <![CDATA[
+             select password from coin_member where id= #{ID}
+        ]]>
+        </select>
+        
+         <select parameterType="String"  resultType="test.toy.coin.common.VO.memberVo" id="selectMember">
+                        <![CDATA[
+             select * from coin_member where id= #{ID}
+        ]]>
+        </select>
+        
+        <insert id="insertBoard" parameterType="test.toy.coin.common.VO.COIN_board_VO"> 
+     <![CDATA[
+    
+    INSERT INTO COIN_board VALUES(board_count.NEXTVAL,#{BOARD_TITLE},#{ID},sysdate,0,0,0,#{BOARD_CONTENT},0) 
+     ]]>
+    </insert>
+    
+    
+    
+
+
+        
+        
+      
+	
+        </mapper>
