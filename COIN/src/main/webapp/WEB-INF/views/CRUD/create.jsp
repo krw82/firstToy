@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script type="text/javascript"> 
+	
+</script>
 </head>
 <body>
-<form action="create" method="post">
+<form action="/coin/create" method="post">
 <table border="1">
 
 	<colgroup> <col width="15%"> <col width="*"/> </colgroup> <caption>게시글 작성</caption>

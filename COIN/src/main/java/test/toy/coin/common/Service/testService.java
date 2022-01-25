@@ -52,6 +52,35 @@ public class testService implements testServiceIM{
 	}
 
 
+	@Override
+	public COIN_board_VO board_Detail(int board_number) {
+		// TODO Auto-generated method stub
+		return Dao.BOARD_Detail(board_number);
+	}
+
+
+	@Override
+	public void BOARD_COUNT(int board_number) {
+		Dao.BOARD_COUNT(board_number);
+		
+	}
+
+
+	@Override
+	public void board_Update(COIN_board_VO coin_vo) {
+		// TODO Auto-generated method stub
+		Dao.BOARD_UPDATE(coin_vo);
+	}
+
+
+	@Override
+	public void board_Delete(int board_number) {
+		// TODO Auto-generated method stub
+		Dao.BOARD_DELETE(board_number);
+		
+	}
+
+
 
 
 	

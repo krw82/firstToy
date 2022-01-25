@@ -19,11 +19,11 @@
 	</tr>
 	<tr>
 		<td>비밀번호</td>
-		<td><input type="text" name="PASSWORD"></td>
+		<td><input type="password" name="PASSWORD"></td>
 	</tr>
 	<tr>
 		<td>비밀번호 확인</td>
-		<td><input type="text"></td>
+		<td><input type="password"></td>
 	</tr>
 	<tr>
 		<td>선호하는 자산</td>

@@ -7,8 +7,41 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script type="text/javascript"> 
 
-
+function check_butto(){
+	
+			 $.ajax({
+			        type : "GET",
+			        url :'<c:url value="IDCHECK/ajax"/>',
+			        data : {CREATE : 't' },
+			        async : false,
+			        success : function(data){
+			        	
+			        	if(data.ID_CHECK==1){
+			        		location.href = "/coin/create";
+			        	
+			        	}
+			        	else{
+			        		alert('로그인 후 이용 가능합니다.')
+			        		
+			        		location.href="/coin/board"; 
+			        	
+			        	}
+			        			
+			        },
+			        
+			    error: function(data){
+			        alert("에러가 발생했습니다.");
+			        
+			    }
+			    
+			     });
+			
+			 
+	} 
+</script>
 
 </head>
 <body>
@@ -30,7 +63,7 @@
 		<c:choose>
 	<c:when test="${fn:length(list)>0 }">
  		 	<c:forEach var="list" items="${list}" varStatus="status">
-		        <tr >
+		        <tr onclick="location.href='READ?BOARD_NUMBER=${list.BOARD_NUMBER}'">
 		 		  <td>${list.BOARD_NUMBER}</td>
 		          <td>${list.BOARD_TITLE}</td>
 		          <td>${list.ID}</td>
@@ -49,6 +82,6 @@
 		
 		</tbody>
 </table>
-<a href="/coin/create"><input type="button" value="글작성"></a>
+<input type="button" value="글작성" onclick="check_butto()">
 </body>
 </html>

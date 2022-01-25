@@ -48,4 +48,20 @@ public class crudDao {
 		 sqlSession.insert("Utils.insertBoard", coin_board_vo);
 	}
 	
+	public COIN_board_VO BOARD_Detail(int board_number) {
+		 return sqlSession.selectOne("Utils.Board_Detail", board_number);
+	}
+	
+	public void BOARD_COUNT(int board_number) {
+		 sqlSession.update("Utils.board_count",board_number);
+	}
+	
+	public void BOARD_UPDATE(COIN_board_VO coin_board_vo) {
+		sqlSession.update("Utils.board_update",coin_board_vo);
+	}
+	public void BOARD_DELETE(int board_number) {
+		sqlSession.update("Utils.board_delete",board_number);
+	}
+	
+	
 }

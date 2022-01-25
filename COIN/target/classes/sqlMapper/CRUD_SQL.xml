@@ -12,7 +12,7 @@
         
 	<select resultType="test.toy.coin.common.VO.COIN_board_VO"  id="selectBoard">
                         <![CDATA[
-             select * from coin_board
+             select * from coin_board order by BOARD_NUMBER DESC
         ]]>
         </select>
      
@@ -44,6 +44,33 @@
     INSERT INTO COIN_board VALUES(board_count.NEXTVAL,#{BOARD_TITLE},#{ID},sysdate,0,0,0,#{BOARD_CONTENT},0) 
      ]]>
     </insert>
+    
+    <select parameterType="int"  resultType="test.toy.coin.common.VO.COIN_board_VO" id="Board_Detail">
+                        <![CDATA[
+             select * from COIN_board where BOARD_NUMBER=#{BOARD_NUMBER}
+        ]]>
+        </select>
+        
+        
+        <update id="board_count"  parameterType="int">
+		<![CDATA[
+            update coin_board set board_count= board_count+1 where board_number=#{BOARD_NUMBER}
+        ]]>
+	</update>
+	
+	<update id="board_update"  parameterType="test.toy.coin.common.VO.COIN_board_VO">
+		<![CDATA[
+            update coin_board set board_TITLE= #{BOARD_TITLE}, BOARD_CONTENT= #{BOARD_CONTENT}
+             where board_number=#{BOARD_NUMBER}
+        ]]>
+	</update>
+    
+    <delete id="board_delete" parameterType="int">
+    <![CDATA[
+             delete from coin_board where board_number=#{BOARD_NUMBER}
+        ]]>
+
+	</delete>
     
     
     

@@ -16,5 +16,13 @@ public interface testServiceIM {
 	public memberVo selectMember(String ID);
 	
 	public void createBoard(COIN_board_VO coin_vo);
+	
+	public COIN_board_VO board_Detail(int board_number);
+	
+	public void BOARD_COUNT(int board_number);
+	
+	public void board_Update(COIN_board_VO coin_vo);
+	
+	public void board_Delete(int board_number);
 
 }
