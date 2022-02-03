@@ -62,7 +62,8 @@ function create(){
 </script>
 </head>
 <body>
-<form action="login/success" onsubmit="return login();" method="POST">
+<div style="margin-left : 400px; margin-top:250px;">
+<form action="login/success" onsubmit="return login();" method="POST" >
 <table board="1">
 	<tr>
 		<td>아이디</td>
@@ -74,8 +75,10 @@ function create(){
 	</tr>
 </table>
 
-<input type="submit">
+<input type="submit" style="width :15%; float : left;" value="로그인">
 </form>
-<input type="button" onclick="create();" value="회원가입">
+<input type="button" onclick="create();" value="회원가입"  style="width :15%; float : left;">
+</div>
+
 </body>
 </html>

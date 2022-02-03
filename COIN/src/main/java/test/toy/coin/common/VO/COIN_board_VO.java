@@ -13,6 +13,8 @@ public class COIN_board_VO {
 	int BOARD_BAD;
 	String BOARD_CONTENT;
 	int BOARD_IDX;
+	
+
 	public int getBOARD_NUMBER() {
 		return BOARD_NUMBER;
 	}
