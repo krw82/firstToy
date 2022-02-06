@@ -43,21 +43,21 @@ public class chartController {
 		Gson gson = new Gson();
 		String url;
 		if(a<80000) {
-			url="https://api.upbit.com/v1/candles/minutes/"+a/60+"?market="+urlcoin+"&count=20";
-			if(a==60)scalee="1분봉"; scaleNumber=60;
-			if(a==300)scalee="5분봉";scaleNumber=300;
-			if(a==900)scalee="15분봉";scaleNumber=900;
-			if(a==3600)scalee="1시간봉";scaleNumber=3600;
-			if(a==14400)scalee="4시간봉";scaleNumber=14400;
+			url="https://api.upbit.com/v1/candles/minutes/"+a/60+"?market="+urlcoin+"&count=100";
+			if(a==60) {scalee="1분봉"; scaleNumber=60;}
+			if(a==300) {scalee="5분봉";scaleNumber=300;}
+			if(a==900) {scalee="15분봉";scaleNumber=900;}
+			if(a==3600) {scalee="1시간봉";scaleNumber=3600;}
+			if(a==14400) {scalee="4시간봉";scaleNumber=14400;}
 			
 		}
 		else if(a==86400) {
-			url="https://api.upbit.com/v1/candles/days?market="+urlcoin+"&count=20";
+			url="https://api.upbit.com/v1/candles/days?market="+urlcoin+"&count=100";
 			scalee="일봉";
 			scaleNumber=86400;
 		}
 		else {
-			url="https://api.upbit.com/v1/candles/weeks?market="+urlcoin+"&count=20";
+			url="https://api.upbit.com/v1/candles/weeks?market="+urlcoin+"&count=100";
 			scalee="주봉";
 			scaleNumber=604800;
 		}
@@ -83,7 +83,7 @@ public class chartController {
 			list.add(gson.fromJson(obb.toString(),RestUpbit_Vo.class));
 		} 
 		
-		NewsController a1 =new NewsController(); //컨트롤러는 아니지만 일단 이름은 이렇게 지음. 추후에 수정 예정
+		NewsController a1 =new NewsController(); 
 		model.addAttribute("list",list);
 		model.addAttribute("news", a1.News(coin));
 		model.addAttribute("coinSelect",urlcoin);

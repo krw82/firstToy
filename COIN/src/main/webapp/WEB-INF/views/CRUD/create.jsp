@@ -9,13 +9,16 @@
 <title>Insert title here</title>
 
 <script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <script type="text/javascript"> 
 	
 </script>
 </head>
-<body>
+<body style="background-color: #E4E4E4;">
+<div style="margin-left:150px;">
 <form action="/coin/create" method="post">
-<table border="1">
+
+<table border="1" class="table table-hover">
 
 	<colgroup> <col width="15%"> <col width="*"/> </colgroup> <caption>게시글 작성</caption>
 	<tbody>
@@ -33,9 +36,9 @@
 </tbody>
 </table>
 
-<input type="submit" value="작성하기">
+<input type="submit" value="작성하기"  class="btn btn-light" style="float:right;">
 </form>
 
-
+</div>
 </body>
 </html>

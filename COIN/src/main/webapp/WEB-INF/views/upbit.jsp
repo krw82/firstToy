@@ -11,15 +11,21 @@
 
 	<title>CHART</title>
 	<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 	<script language="javascript" type="text/javascript">
 	google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(onMessage);
     var dataArray= [['trade_date','low_price','opening_price', 'trade_price', 'high_price']];
+    var optionArray=[];
     
-    <c:forEach items="${list}" var="item">        
+    <c:forEach items="${list}" var="item" varStatus="index">   
+   
     dataArray.push(['${item.candle_date_time_kst}' , ${item.low_price}, ${item.opening_price} ,${item.trade_price},${item.high_price} ]);
+    
+    
+    
 	</c:forEach>
  
 	
@@ -28,6 +34,19 @@
 		var output;
 		var price=0;
 		var candleTime;
+		
+		 var options = {
+	    		  legend: 'none',
+	    		  candlestick: {
+	                  fallingColor: { strokeWidth: 0, fill: 'blue' }, // red
+	                  risingColor: { strokeWidth: 0, fill: 'red' }   // green
+	               },
+	               /* hAxis: {
+	                   ticks:optionArray
+	               }, */
+	    	    
+	    	        backgroundColor: '#E4E4E4'
+	  		  };
 		
  
 
@@ -142,9 +161,7 @@
 			  
 		      var data = google.visualization.arrayToDataTable(dataArray);
 
-		      var options = {
-		     	 legend:'none'
-		  		  };
+		     
 		      
 		    chart.draw(data, options);
 		    
@@ -191,7 +208,7 @@
 		function addLow(){
 			var inn=Math.round(new Date() / 1000);
 			
-			if(inn%60==0){
+			if(inn%${coinSelect}==0){
 			 dataArray.push([new Date() ,price, price ,price,price]); 
 			}
 			
@@ -218,24 +235,44 @@
 
 </head>
 
-<body>
+<body style="background-color:#E4E4E4;">
 
 
 
 
 
-
-	<div style="height: 1000px; width : 20%; float: left;" >
-	<h1>${coinSelect}</h1>
-	<h4>${scalee }</h4>
-	
-	</div>
+<div>
+	<nav style="width:19%; float:left;">
+    <h1>MBDTF</h1> <!-- h1태그 검색사이트가 좋아함. 문서상에 1개만 있는 것을 권장한다. -->
+   <div class="list-group">
+        <a  class="list-group-item list-group-item-action list-group-item-dark" href="chart?scale=60&coin=KRW-BTC" style=" background-color:#eee;">비트코인</a>
+       <a  class="list-group-item list-group-item-action list-group-item-dark" href="chart?scale=60&coin=KRW-ETH" style=" background-color:#eee;">이더리움</a>
+       <a  class="list-group-item list-group-item-action list-group-item-dark" href="chart?scale=60&coin=KRW-XRP" style=" background-color:#eee;">리플</a>
+       <a  class="list-group-item list-group-item-action list-group-item-dark" href="board" style=" background-color:#eee;">게시판</a>
+       
+    </div>
+    
+    <p style="width:30%; margin-left: 20px; float:left;">${IDD}</p>
+    <c:choose>
+    <c:when test="${IDD eq '로그인해주세요'}">
+    	<a href="login"><input type="button" value="로그인" style="width:50%; float:left; margin-left: 50px;" > </a>
+    </c:when>
+	<c:otherwise>
+	<a href="login"><input type="button" value="로그아웃" style="width:50%; float:left; margin-left: 50px;" > </a>
+	</c:otherwise>
+	</c:choose>
+     
+</nav>
+</div>
 	
 	<div id="chart_div" style="height: 1000px; width : 60%; float: left;" ></div>
 	
-	<form action="chart" method="get" name="frm">
+	<div id="news" style="width : 20%; float: left; ">
+	<h1>${coinSelect}</h1>
+	<h5 style="margin-left:25px;">${scalee}</h5>
 	
-	<select name="scale" onchange="location.href = '/coin/chart?scale='+this.value+'&coin=${coinSelect}';" >
+	<form action="chart" method="get" name="frm">
+	<select name="scale" onchange="location.href = '/coin/chart?scale='+this.value+'&coin=${coinSelect}';" class="form-select" aria-label="Default select example" >
 	<option selected  disabled>SCALE</option>
 	<option value="60">1분봉</option>
 	<option value="300">5분봉</option>
@@ -247,15 +284,17 @@
 	</select>
 	
 	
-	<select name="coin" onchange="location.href = '/coin/chart?scale=${scaleNumber}&coin='+this.value;" >
+	<select name="coin" onchange="location.href = '/coin/chart?scale=${scaleNumber}&coin='+this.value;" class="selectpicker" >
 	<option value="선택" selected  disabled>COIN</option>
 	<option value="비트코인">KRW-BTC</option>
 	<option value="이더리움">KRW-ETH</option>
 	<option value="리플">KRW-XRP</option>
 	</select>
 	</form>
-	<div id="news" style="width : 20%; float: left;">
-	<table border="1">
+	
+	
+	
+	<table border="1" class="table table-hover">
 		<c:forEach var="news" items="${news}" varStatus="status">
 		        <tr onclick="window.open('${news.link}','','')">
 		 		 <td>${news.title}</td>
@@ -266,8 +305,28 @@
 	</div>
 	
 	
+	
+
+	 
 
 </body>
+
+	 <style>
+	 
+    nav{ 
+       
+        background-color:#eee; 
+        border-right:1px solid #ddd;
+        /* height:100% 그냥 적용 안됨. 부모개념이 있어야 채워질 수 있음 */
+
+        /* position:fixed; */  /*공중에 떠서 공간을 차지하지 않음*/
+         height:1000px;  /*fixed를 해서 높이 100%가 가능해짐*/
+    }
+    h1{ font-size:18px;  padding:20px; }
+    
+</style>
+
+
 
 </html>
 

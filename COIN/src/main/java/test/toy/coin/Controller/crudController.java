@@ -31,6 +31,14 @@ public class crudController {
 		
 		return "login/login";
 	}
+	
+	@RequestMapping(value="/logout",method=RequestMethod.GET)
+
+	public String loginOut(HttpServletRequest reqeust) {
+		HttpSession session = reqeust.getSession();
+		session.removeAttribute("VO");
+		return "login/login";
+	}
 	//login ajax
 	@RequestMapping(value="/loginAJ",method=RequestMethod.GET)
 	public ModelAndView login(@RequestParam("ID") String id,@RequestParam("PASSWORD") String password) {
@@ -89,7 +97,7 @@ public class crudController {
 		
 		model.addAttribute("list",test.select_board());
 		
-		return "CRUD/READ";
+		return "CRUD/board";
 	}
 	
 	//게시글 작성
@@ -115,7 +123,7 @@ public class crudController {
 	public String board_READ(Model model,@RequestParam("BOARD_NUMBER") int BOARD_NUMBER) {
 		test.BOARD_COUNT(BOARD_NUMBER);
 		model.addAttribute("model",test.board_Detail(BOARD_NUMBER));
-		return "CRUD/Detail";
+		return "CRUD/READ";
 	}
 	//게시글수정
 	@RequestMapping(value="/UPDATE",method=RequestMethod.GET)

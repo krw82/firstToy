@@ -61,23 +61,25 @@ function create(){
 
 </script>
 </head>
-<body>
-<div style="margin-left : 400px; margin-top:250px;">
+<body style="background-color: #E4E4E4;">
+<div style="margin-top:350px; margin-left : 600px;">
 <form action="login/success" onsubmit="return login();" method="POST" >
+
 <table board="1">
 	<tr>
 		<td>아이디</td>
-		<td><input type="text" name="ID" id="ID"></td>
+		<td><input type="text" name="ID" id="ID" style="width:200px;"></td>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
-		<td><input type="password" name="PASSWORD" id="PASSWORD"></td>
+		<td><input type="password" name="PASSWORD" id="PASSWORD" style="width:200px;"></td>
 	</tr>
 </table>
 
 <input type="submit" style="width :15%; float : left;" value="로그인">
 </form>
 <input type="button" onclick="create();" value="회원가입"  style="width :15%; float : left;">
+
 </div>
 
 </body>

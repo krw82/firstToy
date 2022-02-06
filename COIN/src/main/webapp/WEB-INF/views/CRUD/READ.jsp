@@ -1,34 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
-<script type="text/javascript"> 
 
-function check_butto(){
-	
+<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script type="text/javascript"> 
+	function check_button(URL){
+		var number=${model.BOARD_NUMBER};
+		var iid='${model.ID}';
+		
+			  
 			 $.ajax({
 			        type : "GET",
-			        url :'<c:url value="IDCHECK/ajax"/>',
-			        data : {CREATE : 't' },
+			        url :'<c:url value="/IDCHECK/ajax"/>',
+			        data : {BOARD_NUMBER :number  , ID : iid },
 			        async : false,
 			        success : function(data){
-			        	
 			        	if(data.ID_CHECK==1){
-			        		location.href = "/coin/create";
-			        	
+			        		location.href=URL+"?BOARD_NUMBER=${model.BOARD_NUMBER}";
+			        		
 			        	}
 			        	else{
-			        		alert('로그인 후 이용 가능합니다.')
-			        		
-			        		location.href="/coin/board"; 
-			        	
+			        		alert('본인 게시물이 아닙니다');
 			        	}
+			        	
+			        	 
 			        			
 			        },
 			        
@@ -37,51 +39,51 @@ function check_butto(){
 			        
 			    }
 			    
-			     });
-			
-			 
-	} 
-</script>
-
-</head>
-<body>
-<table border="1" style="width:1500px">
-
-<colgroup> <col width="5%"/> <col width="*"/> <col width="10%"/> <col width="10%"/> <col width="10%"/><col width="10%"/></colgroup>
-
-
-		<thead>
-			<tr>
-				<th>NO</th>
-				<th>제목</th>
-				<th>닉네임</th>
-				<th>등록일</th>
-				<th>조회</th>
-				<th>추천</th>
-		</thead>
-		<tbody>
-		<c:choose>
-	<c:when test="${fn:length(list)>0 }">
- 		 	<c:forEach var="list" items="${list}" varStatus="status">
-		        <tr onclick="location.href='READ?BOARD_NUMBER=${list.BOARD_NUMBER}'">
-		 		  <td>${list.BOARD_NUMBER}</td>
-		          <td>${list.BOARD_TITLE}</td>
-		          <td>${list.ID}</td>
-		          <td>${list.BOARD_DATE}</td>
-		          <td>${list.BOARD_COUNT}</td>
-		          <td>${list.BOARD_GOOD} - ${list.BOARD_BAD}</td>
-		        </tr>
-		        
-	        </c:forEach>
-	    </c:when>
-	     <c:otherwise>
-		 조회된결과 없음
-		 </c:otherwise>
+			     });  
 	
-	</c:choose>
-		
+	} 
+	
+
+</script>
+</head>
+<body style="background-color: #E4E4E4;">
+<div style="margin-left:180px;">
+	<table border="1" class="table table-hover"  >
+		<colgroup>
+			<col width="15%">
+			<col width="35%"/> 
+			<col width="15%"/> 
+			<col width="35%"/>
+		</colgroup>
+		<caption>게시글 상세</caption>
+		<tbody>
+			<tr>
+				<th scope="row">글번호</th>
+				<td>${model.BOARD_NUMBER}</td>
+				<th scope="row">조회수</th>
+				<td>${model.BOARD_COUNT}</td>
+			</tr>
+			<tr>
+				<th scope="row">작성자</th>
+				<td>${model.ID}
+				<th scope="row">작성시간</th>
+				<td>${model.BOARD_DATE}</td>
+			</tr>
+			<tr>
+				<th scope="row">제목</th>
+				<td colspan="3">${model.BOARD_TITLE}</td>
+			</tr>
+			<tr>
+				<td colspan="4">${model.BOARD_CONTENT}</td>
+			</tr>
+			
 		</tbody>
-</table>
-<input type="button" value="글작성" onclick="check_butto()">
+	</table>
+	<a href="board"><input type="button" value="목록으로"   class="btn btn-light"> </a> 
+	<input type="button" value="수정하기" onclick="check_button('UPDATE');"  class="btn btn-light"> 
+	 <input type="button" value="삭제하기" onclick="check_button('DELETE');"  class="btn btn-light"> 
+	
+</div>
+
 </body>
 </html>

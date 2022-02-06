@@ -19,6 +19,32 @@
 		<put-attribute name="body"
 			value="/WEB-INF/views/login/login.jsp" />
 	</definition>
+	 <definition name="*/board" extends="layout">		
+		<put-attribute name="body"
+			value="/WEB-INF/views/CRUD/board.jsp" />
+	</definition>
+	
+	<definition name="*/chart" extends="layout">		
+		<put-attribute name="body"
+			value="/WEB-INF/views/upbit.jsp" />
+	</definition>
+	
+	<definition name="*/READ" extends="layout">		
+		<put-attribute name="body"
+			value="/WEB-INF/views/CRUD/READ.jsp" />
+	</definition>
+	
+	<definition name="*/create" extends="layout">		
+		<put-attribute name="body"
+			value="/WEB-INF/views/CRUD/create.jsp" />
+	</definition>
+	
+	<definition name="*/UPDATE" extends="layout">		
+		<put-attribute name="body"
+			value="/WEB-INF/views/CRUD/UPDATE.jsp" />
+	</definition>
+	
+	
 	
 	
 	
