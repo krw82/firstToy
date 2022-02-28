@@ -8,8 +8,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 </head>
 <body style="background-color: #E4E4E4;">
+<div style="margin-left:180px;">
 <form action="memberCreate" method="post">
-<table border="1"  class="table table-hover">
+<table border="1"  class="table table-hover" >
+	<caption>회원가입</caption>
 	<tr>
 		<td>이름</td>
 		<td><input type="text" name="NAME"></td>
@@ -42,7 +44,8 @@
 	
 
 </table>
-<input  type="submit" value="전송">
+<input  type="submit" value="회원가입" style="float:right;" class="btn btn-light">
 </form>
+</div>
 </body>
 </html>

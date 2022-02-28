@@ -77,7 +77,7 @@ public class crudController {
 
 	public String member_create() {
 		
-		return "login/create";
+		return "login/memberCreate";
 	}
 	
 	

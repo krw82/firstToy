@@ -44,6 +44,11 @@
 			value="/WEB-INF/views/CRUD/UPDATE.jsp" />
 	</definition>
 	
+	<definition name="*/memberCreate" extends="layout">		
+		<put-attribute name="body"
+			value="/WEB-INF/views/login/memberCreate.jsp" />
+	</definition>
+	
 	
 	
 	

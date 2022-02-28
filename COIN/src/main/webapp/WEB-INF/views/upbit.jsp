@@ -286,9 +286,9 @@
 	
 	<select name="coin" onchange="location.href = '/coin/chart?scale=${scaleNumber}&coin='+this.value;" class="selectpicker" >
 	<option value="선택" selected  disabled>COIN</option>
-	<option value="비트코인">KRW-BTC</option>
-	<option value="이더리움">KRW-ETH</option>
-	<option value="리플">KRW-XRP</option>
+	<option value="KRW-BTC">비트코인</option>
+	<option value="KRW-ETH">이더리움</option>
+	<option value="KRW-XRP">리플</option>
 	</select>
 	</form>
 	
